@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from services import get_nasa_client, NasaClient
 from models import AsteroidFeed
+from models.schemas_simulator_impact import ImpactInput, SimulationResult
+from services.physics import calculate_impact
 
 router = APIRouter()
 
@@ -26,3 +28,17 @@ async def get_asteroid(
         return await nasa_client.get_asteroid_by_id(asteroid_id)
     except httpx.HTTPError as e:
         raise HTTPException(status_code=500, detail="Error fetching asteroid data")
+    
+@router.post("/simulate", response_model=SimulationResult)
+async def simulate_impact(input_data: ImpactInput):
+    """
+    Recibe los datos para la simulacion
+    """
+    results = calculate_impact(
+        diameter=input_data.diameter_m,
+        density=input_data.density_kg_m3,
+        velocity=input_data.velocity_km_s,
+        is_water_impact=input_data.is_water_impact
+    )
+
+    return SimulationResult(**results)
