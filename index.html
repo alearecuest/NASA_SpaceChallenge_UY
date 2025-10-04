@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto: Meteor Madness - NASA Space Challenge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #e2e8f0; /* Slate 200 */
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.6); /* Slate 800 with opacity */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(51, 65, 85, 0.5); /* Slate 700 with opacity */
+        }
+        .glow-effect {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4), 0 0 5px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-10 bg-slate-900/80 backdrop-blur-sm border-b border-slate-700">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-white">Meteor Madness</h1>
+            <a href="https://github.com/alearecuest/NASA_SpaceChallenge_UY" target="_blank" class="text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors">
+                Ver en GitHub
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center text-center px-6 pt-20">
+            <div class="max-w-3xl">
+                <h2 class="text-4xl md:text-6xl font-bold text-white tracking-tight">
+                    Visualizando el Cosmos: Una Herramienta para la Defensa Planetaria
+                </h2>
+                <p class="mt-6 text-lg text-slate-400">
+                    Nuestra solución para el <span class="font-semibold text-blue-400">NASA International Space Apps Challenge 2025</span>, enfrentando el desafío "Meteor Madness".
+                </p>
+                <div class="mt-8 flex justify-center gap-4">
+                    <a href="#about" class="bg-blue-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 glow-effect">
+                        Conoce Más
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About the Project Section -->
+        <section id="about" class="py-20 sm:py-32">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center">
+                    <h3 class="text-3xl font-bold text-white">Sobre el Proyecto</h3>
+                    <p class="mt-4 text-slate-400 max-w-2xl mx-auto">
+                        Este proyecto es una aplicación interactiva diseñada para rastrear, visualizar y simular el impacto de objetos cercanos a la Tierra (NEOs), como asteroides y cometas. Utilizamos datos en tiempo real de las APIs de la NASA para proporcionar una herramienta educativa y de concienciación sobre la defensa planetaria.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="py-20 sm:py-32 bg-slate-900/50">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <h3 class="text-3xl font-bold text-white text-center mb-12">Nuestro Equipo</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Team Member Card -->
+                    <div class="glass-card p-6 rounded-xl text-center">
+                        <h4 class="text-lg font-semibold text-white">Jorge</h4>
+                        <p class="text-blue-400">Back-end Developer</p>
+                    </div>
+                    <!-- Team Member Card -->
+                    <div class="glass-card p-6 rounded-xl text-center">
+                        <h4 class="text-lg font-semibold text-white">Luna</h4>
+                        <p class="text-blue-400">Back-end Developer</p>
+                    </div>
+                    <!-- Team Member Card -->
+                    <div class="glass-card p-6 rounded-xl text-center">
+                        <h4 class="text-lg font-semibold text-white">Michael</h4>
+                        <p class="text-blue-400">Merge & Integration</p>
+                    </div>
+                    <!-- Team Member Card -->
+                    <div class="glass-card p-6 rounded-xl text-center">
+                        <h4 class="text-lg font-semibold text-white">Sofía</h4>
+                        <p class="text-blue-400">Front-end Developer</p>
+                    </div>
+                     <!-- Team Member Card -->
+                    <div class="glass-card p-6 rounded-xl text-center">
+                        <h4 class="text-lg font-semibold text-white">Aylin</h4>
+                        <p class="text-blue-400">Front-end Developer</p>
+                    </div>
+                    <!-- Team Member Card -->
+                    <div class="glass-card p-6 rounded-xl text-center">
+                        <h4 class="text-lg font-semibold text-white">Alejandro</h4>
+                        <p class="text-blue-400">Front-end Developer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Resources Section -->
+        <section id="tech" class="py-20 sm:py-32">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center">
+                    <h3 class="text-3xl font-bold text-white">Recursos y Tecnologías</h3>
+                    <p class="mt-4 text-slate-400 max-w-2xl mx-auto">
+                        Nuestro proyecto se basa en datos fiables y herramientas de vanguardia proporcionadas por la NASA y otras organizaciones.
+                    </p>
+                    <ul class="mt-8 text-left inline-block bg-slate-800/50 p-6 rounded-lg border border-slate-700">
+                        <li class="mb-2"><span class="font-semibold text-blue-300">API Principal:</span> JPL SSD & CNEOS API</li>
+                        <li class="mb-2"><span class="font-semibold text-blue-300">Datos de Acercamiento:</span> Close Approach Data API</li>
+                        <li class="mb-2"><span class="font-semibold text-blue-300">Datos de Bólidos:</span> Fireball API</li>
+                        <li class="mb-2"><span class="font-semibold text-blue-300">Efemérides:</span> Horizons API</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-700">
+        <div class="container mx-auto px-6 py-8 text-center text-slate-400">
+            <p>&copy; 2025 Equipo Meteor Madness - NASA Space Apps Challenge Uruguay.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
