@@ -1,6 +1,8 @@
-from fastapi import FastAPI
-#from models.schemas_simulator_impact import SimulationResult, ImpactInput
+from fastapi import FastAPI, Path, HTTPException
+# from models.schemas_simulator_impact import SimulationResult, ImpactInput
 # from services.physics import calculate_impact
+from models.schemas_neo import NeoData
+from services.neo_service import get_neo_data
 from api.routes import main_router
 
 app = FastAPI(
@@ -27,6 +29,16 @@ async def simulate_impact(input_data: ImpactInput):
     )
 
     return SimulationResult(**results)"""
+@app.get("/neo/{asteroid_id}", response_model=NeoData, tags=["Near Earth Object"])
+async def get_asteroid_data(asteroid_id: str = Path(..., min_length=3, description="Designacion del asteroide (ej. 99942)")):
+    try:
+        neo_data = await get_neo_data(asteroid_id=asteroid_id)
+        return neo_data
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error interno: {str(e)}")
+
 
 if __name__ == "__main__":
     import uvicorn

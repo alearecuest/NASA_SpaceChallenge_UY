@@ -7,7 +7,7 @@ K_SHOCKWAVE = 0.0008
 K_WIND = 150
 K_TSUNAMI = 0.0005
 
-def calculate_impact(diameter: float, density: float, velocity: float, is_water_impact: bool) -> dict:
+def calculate_impact(diameter: float, density: float, velocity: float, angle_degrees, is_water_impact: bool) -> dict:
     """
     Funcion principal para orquestar los calculos
     """
@@ -17,6 +17,9 @@ def calculate_impact(diameter: float, density: float, velocity: float, is_water_
     mass_kg = volume_m3 * density
     velocity_m_s = velocity * 1000
     energy_joules = 0.5 * mass_kg * (velocity_m_s ** 2)
+    angle_rad = math.radians(angle_degrees)
+    velocity_vertical_m_s = velocity_m_s * math.sin(angle_rad)
+    effecive_energy_joules = 0
 
     results = {}
 

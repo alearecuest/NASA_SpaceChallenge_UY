@@ -1,0 +1,93 @@
+# neo_service.py
+
+import os
+import httpx
+import math
+from dotenv import load_dotenv
+from models.schemas_neo import NeoData, NasaNeoWSResponse
+
+# Cargar las variables de entorno desde el archivo .env
+load_dotenv()
+
+# Obtener la API Key desde las variables de entorno
+NASA_API_KEY = "FeWOesaZRldTKSO6j91FUxrczjti3Wg8LADcCmRg"
+NASA_NEOWS_URL = f"https://api.nasa.gov/neo/rest/v1/neo/{{asteroid_id}}?api_key={NASA_API_KEY}"
+
+# Densidad por defecto para asteroides rocosos (kg/m³)
+DEFAULT_DENSITY = 2500
+
+async def get_neo_data(asteroid_id: str) -> NeoData:
+    """
+    Obtiene y filtra datos de un asteroide desde la API NeoWS de la NASA,
+    enfocándose únicamente en las aproximaciones a la Tierra.
+    """
+    if not NASA_API_KEY:
+        raise ValueError("Error: La variable de entorno NASA_API_KEY no está configurada.")
+
+    async with httpx.AsyncClient() as client:
+        response = await client.get(NASA_NEOWS_URL.format(asteroid_id=asteroid_id))
+        
+        if response.status_code != 200:
+            raise ValueError(f"Error al obtener datos de la NASA para {asteroid_id}: {response.text}")
+        
+        try:
+            nasa_data = NasaNeoWSResponse(**response.json())
+        except Exception as e:
+            print(f"Error parseando JSON de la NASA: {e}")
+            raise ValueError(f"No se pudo parsear la respuesta de la NASA: {e}")
+
+    # --- FILTRADO: Obtener solo las aproximaciones a la Tierra ---
+    earth_approaches = [
+        approach for approach in nasa_data.close_approach_data 
+        if approach.orbiting_body.lower() == "earth"
+    ]
+
+    if not earth_approaches:
+        raise ValueError(f"El asteroide {asteroid_id} no tiene aproximaciones registradas a la Tierra.")
+
+    # --- Encontrar la aproximación más cercana a la Tierra ---
+    closest_approach = min(
+        earth_approaches, 
+        key=lambda a: float(a.miss_distance.kilometers)
+    )
+
+    # --- Extraer y procesar los datos que nos interesan ---
+    name = nasa_data.name
+    designation = nasa_data.designation
+    diameter_min_m = nasa_data.estimated_diameter.meters['estimated_diameter_min']
+    diameter_max_m = nasa_data.estimated_diameter.meters['estimated_diameter_max']
+    
+    distance_km = float(closest_approach.miss_distance.kilometers)
+    velocity_km_s = float(closest_approach.relative_velocity.kilometers_per_second)
+    
+    is_hazardous = nasa_data.is_potentially_hazardous_asteroid
+
+    # --- Cálculo de la energía de impacto ---
+    avg_diameter_m = (diameter_min_m + diameter_max_m) / 2
+    volume_m3 = (4/3) * math.pi * ((avg_diameter_m / 2) ** 3)
+    mass_kg = volume_m3 * DEFAULT_DENSITY
+    energia_joules = 0.5 * mass_kg * ((velocity_km_s * 1000) ** 2)
+
+    # --- Determinar la peligrosidad y los riesgos ---
+    peligrosidad = "Asteroide potencialmente peligroso" if is_hazardous else "Riesgo bajo"
+    
+    # Simplificamos las escalas de Torino y Palermo basándonos en el flag de la NASA
+    riesgo_torino = 1 if is_hazardous else 0
+    riesgo_palermo = -1.0 if is_hazardous else -5.0
+    
+    # La API NeoWS no da composición, lo indicamos.
+    composicion = f"No disponible en esta API (densidad asumida: {DEFAULT_DENSITY} kg/m³)"
+
+    return NeoData(
+        nombre=name,
+        designacion=designation,
+        diametro_min_m=diameter_min_m,
+        diametro_max_m=diameter_max_m,
+        distancia_actual_km=distance_km,
+        velocidad_relativa_km_s=velocity_km_s,
+        riesgo_torino=riesgo_torino,
+        riesgo_palermo=riesgo_palermo,
+        composicion_estimada=composicion,
+        energia_impacto_joules=energia_joules,
+        peligrosidad=peligrosidad
+    )
