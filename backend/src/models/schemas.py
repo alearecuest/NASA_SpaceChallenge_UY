@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from datetime import datetime
 from typing import List, Optional
 
+
 class CloseApproachData(BaseModel):
     close_approach_date: str
     orbiting_body: str
@@ -18,3 +19,18 @@ class Asteroid(BaseModel):
 class AsteroidFeed(BaseModel):
     element_count: int
     near_earth_objects: dict
+
+class HistoricalEvent(BaseModel):
+    id: int
+    title: str
+    description: str
+    year: str
+    impact_location: str
+    asteroid_size: Optional[str] = None
+    scientific_evidence: str
+    consequences: List[str]
+    references: List[str]
+
+class HistoricalEventsResponse(BaseModel):
+    events: List[HistoricalEvent]
+    total_events: int
