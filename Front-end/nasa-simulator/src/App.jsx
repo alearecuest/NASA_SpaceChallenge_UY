@@ -4,6 +4,7 @@ import AsteroidScreen from './pages/AsteroidScreen';
 import AsteroidDetail from './pages/AsteroidDetail';
 import CometScreen from './pages/CometScreen';
 import CometDetail from './pages/CometDetail';
+import Simulation from './pages/Simulation';
 import './styles/global.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/asteroids/:id" element={<AsteroidDetail />} />
         <Route path="/comets" element={<CometScreen />} />
         <Route path="/comets/:id" element={<CometDetail />} />
+        <Route path="/simulation/:type/:id" element={<Simulation />} />
       </Routes>
     </Router>
   );
