@@ -7,8 +7,7 @@ from typing import Optional, List
 class NeoData(BaseModel):
     nombre: str = Field(..., description="Nombre del asteroide.")
     designacion: str = Field(..., description="Designación única de la NASA.")
-    diametro_min_m: float = Field(..., description="Diámetro mínimo estimado en metros.")
-    diametro_max_m: float = Field(..., description="Diámetro máximo estimado en metros.")
+    size: float = Field(..., description="Diámetro promedio estimado en metros.")
     distancia_actual_km: Optional[float] = Field(None, description="Distancia de la aproximación más cercana a la Tierra en kilómetros.")
     velocidad_relativa_km_s: Optional[float] = Field(None, description="Velocidad en la aproximación más cercana a la Tierra (km/s).")
     riesgo_torino: int = Field(..., description="Escala de riesgo de Torino (simplificado).")

@@ -70,8 +70,7 @@ async def get_neo_data(asteroid_id: str) -> NeoData:
     return NeoData(
         nombre=name,
         designacion=designation,
-        diametro_min_m=diameter_min_m,
-        diametro_max_m=diameter_max_m,
+        size=avg_diameter_m,
         distancia_actual_km=distance_km,
         velocidad_relativa_km_s=velocity_km_s,
         riesgo_torino=riesgo_torino,
