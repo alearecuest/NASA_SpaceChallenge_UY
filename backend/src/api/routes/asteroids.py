@@ -28,7 +28,7 @@ async def get_asteroid(
         return await nasa_client.get_asteroid_by_id(asteroid_id)
     except httpx.HTTPError as e:
         raise HTTPException(status_code=500, detail="Error fetching asteroid data")
-    
+
 @router.post("/simulate", response_model=SimulationResult)
 async def simulate_impact(input_data: ImpactInput):
     """

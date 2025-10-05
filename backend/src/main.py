@@ -6,6 +6,7 @@ from services.neo_service import get_neo_data
 from models.schemas_simulator_impact_v2 import ImpactInputV2, SimulationResultV2
 from services.physicsv2 import calculate_impact_v2
 from api.routes import main_router
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
     title="NASA Asteroids API",
@@ -15,6 +16,20 @@ app = FastAPI(
 
 # Incluir todas las rutas
 app.include_router(main_router)
+
+# Permitir solicitudes desde React (localhost:3000)
+origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def root():
