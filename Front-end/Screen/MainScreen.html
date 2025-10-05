@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NASA Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #111316;
+      --card: #0e2130;
+      --accent: #b7a5ff;
+      --accent-2: #8b79d6;
+      --text: #eae7ff;
+      --muted: #c5bdea;
+      --ring: #bfb2e6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Outfit", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: radial-gradient(1200px 800px at 70% 20%, #0a2742, #0a1b2a 60%, #0a121c 100%) fixed, var(--bg);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .frame {
+      width: min(1400px, 96vw);
+      min-height: 80vh;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0)), var(--card);
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+      border: 10px solid var(--ring);
+      box-shadow: 0 20px 80px rgba(0,0,0,.45);
+      padding: clamp(20px, 4vw, 40px);
+      isolation: isolate;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      align-items: center;
+      gap: clamp(20px, 5vw, 60px);
+      height: 100%;
+    }
+
+    .brand {
+      font-family: "Audiowide", system-ui;
+      line-height: 1;
+      letter-spacing: 1px;
+      color: var(--accent);
+    }
+
+    .brand .title {
+      font-size: clamp(48px, 9vw, 120px);
+      margin: 0 0 6px;
+    }
+
+    .brand .subtitle {
+      font-size: clamp(38px, 7.5vw, 92px);
+      margin: 0 0 28px;
+      color: #cfbfff;
+    }
+
+    .cta {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      --btn-pad: 14px 26px;
+      --btn-radius: 999px;
+      padding: var(--btn-pad);
+      border-radius: var(--btn-radius);
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      font-weight: 700;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all .2s ease;
+      box-shadow: inset 0 0 0 0 var(--accent);
+    }
+
+    .btn:hover {
+      color: #16161a;
+      background: var(--accent);
+      box-shadow: 0 6px 24px rgba(183,165,255,.35);
+      transform: translateY(-1px);
+    }
+
+    .btn.secondary {
+      border-color: var(--accent-2);
+      color: var(--accent-2);
+    }
+
+    .btn.secondary:hover {
+      background: var(--accent-2);
+      color: #0f1020;
+      box-shadow: 0 6px 24px rgba(139,121,214,.35);
+    }
+
+    .planet-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1/1;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+      overflow: visible;
+    }
+
+    .earth {
+      width: 120%;
+      max-width: 600px;
+      display: block;
+      border-radius: 100%;
+      animation: spin 60s linear infinite;
+      filter: brightness(1) contrast(1) saturate(1);
+      mix-blend-mode: screen;
+      position: relative;
+      z-index: 1;
+      box-shadow: none;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .planet-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      border-radius: 100%;
+      z-index: 0;
+      background: radial-gradient(closest-side, rgba(183,165,255,.45), rgba(183,165,255,0) 70%);
+      filter: blur(14px);
+      transform: scale(1.8);
+      pointer-events: none;
+    }
+
+    .planet-wrap .earth {
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 46%, transparent 50%);
+              mask-image: radial-gradient(circle at 50% 50%, #000 46%, transparent 50%);
+      -webkit-mask-repeat: no-repeat;
+              mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+              mask-size: 100% 100%;
+    }
+
+    .corner {
+      position: absolute;
+      inset: 16px;
+      border-radius: 22px;
+      pointer-events: none;
+    }
+
+    .corner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      outline: 2px dashed rgba(255,255,255,.06);
+    }
+
+    @media (max-width: 860px) {
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .planet-wrap {
+        order: -1;
+      }
+
+      .brand .title {
+        font-size: clamp(42px, 13vw, 80px);
+      }
+
+      .brand .subtitle {
+        font-size: clamp(28px, 10vw, 64px);
+      }
+
+      .btn {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="frame" aria-label="NASA Simulator landing">
+    <div class="corner" aria-hidden="true"></div>
+    <section class="grid">
+      <div class="brand">
+        <h1 class="title">NASA</h1>
+        <h2 class="subtitle">Simulator</h2>
+        <div class="cta">
+          <button class="btn" id="btn-asteroid" aria-label="Open asteroid list">Asteroid</button>
+          <button class="btn secondary" id="btn-comet" aria-label="Open comet list">Comet</button>
+        </div>
+      </div>
+
+      <div class="planet-wrap">
+        <img class="earth" alt="Earth view" src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" />
+      </div>
+    </section>
+  </main>
+
+  <!--
+    <script>
+    document.getElementById('btn-asteroid').addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('navigate', { detail: { to: 'asteroids' }}));
+      alert('Nos vamos a Asteroids (todavia falta, ok)');
+    });
+
+    document.getElementById('btn-comet').addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('navigate', { detail: { to: 'comets' }}));
+      alert('Nos vamos a Comets (todavia falta, ok x2)');
+    });
+  </script>
+-->
+
+<script>
+  document.getElementById('btn-asteroid').addEventListener('click', () => {
+    window.location.href = 'AsteroidScreen.html';
+  });
+
+  document.getElementById('btn-comet').addEventListener('click', () => {
+    window.location.href = 'CometScreen.html';
+  });
+</script>
+</body>
+</html>

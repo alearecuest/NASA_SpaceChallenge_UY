@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NASA Simulator - Comets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../Style/CometStyle.css">
+</head>
+<body>
+  <main class="frame" aria-label="Comet list">
+    <div class="corner" aria-hidden="true"></div>
+    
+    <div class="header">
+      <div class="brand">
+        <h1 class="title">Comets</h1>
+      </div>
+      <a href="MainScreen.html" class="btn">← Back to Home</a>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Size (km)</th>
+            <th>Composition</th>
+            <th>Danger Scale</th>
+          </tr>
+        </thead>
+        <tbody id="comet-table">
+          <tr data-id="halley">
+            <td>1P/Halley</td>
+            <td>11 × 15</td>
+            <td>Ice & Dust</td>
+            <td><span class="danger-low">Low</span></td>
+          </tr>
+          <tr data-id="hale-bopp">
+            <td>C/1995 O1 (Hale-Bopp)</td>
+            <td>60</td>
+            <td>Ice & Rock</td>
+            <td><span class="danger-low">Low</span></td>
+          </tr>
+          <tr data-id="hyakutake">
+            <td>C/1996 B2 (Hyakutake)</td>
+            <td>4.2</td>
+            <td>Ice & Dust</td>
+            <td><span class="danger-low">Low</span></td>
+          </tr>
+          <tr data-id="encke">
+            <td>2P/Encke</td>
+            <td>4.8</td>
+            <td>Ice & Rock</td>
+            <td><span class="danger-low">Low</span></td>
+          </tr>
+          <tr data-id="churyumov">
+            <td>67P/Churyumov-Gerasimenko</td>
+            <td>4.1 × 4.3</td>
+            <td>Ice & Dust</td>
+            <td><span class="danger-low">Low</span></td>
+          </tr>
+          <tr data-id="neowise">
+            <td>C/2020 F3 (NEOWISE)</td>
+            <td>5</td>
+            <td>Ice & Rock</td>
+            <td><span class="danger-low">Low</span></td>
+          </tr>
+          <tr data-id="swift-tuttle">
+            <td>109P/Swift-Tuttle</td>
+            <td>26</td>
+            <td>Ice & Rock</td>
+            <td><span class="danger-medium">Medium</span></td>
+          </tr>
+          <tr data-id="tempel">
+            <td>9P/Tempel</td>
+            <td>7.6 × 4.9</td>
+            <td>Ice & Dust</td>
+            <td><span class="danger-low">Low</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script>
+    const cometData = {
+      halley: {
+        name: "1P/Halley",
+        size: "11 × 15 km",
+        composition: "Ice, Dust, Rock (typical dirty snowball)",
+        danger: "Low",
+        orbit: "75-76 years",
+        distance: "0.586 - 35.1 AU",
+        discovered: "240 BC (recorded)",
+        discoverer: "Chinese astronomers (first record)",
+        mass: "2.2 × 10¹⁴ kg",
+        density: "0.6 g/cm³",
+        rotation: "52.8 hours",
+        perihelion: "0.586 AU",
+        notes: "Most famous periodic comet. Last seen in 1986, next perihelion in 2061. Parent body of Eta Aquarids and Orionids meteor showers."
+      },
+      "hale-bopp": {
+        name: "C/1995 O1 (Hale-Bopp)",
+        size: "~60 km",
+        composition: "Ice, Rock, CO, CN, dust",
+        danger: "Low",
+        orbit: "~2533 years",
+        distance: "0.914 - 370.8 AU",
+        discovered: "July 23, 1995",
+        discoverer: "Alan Hale and Thomas Bopp",
+        mass: "1.3 × 10¹⁶ kg",
+        density: "~0.5 g/cm³",
+        rotation: "11.34 hours",
+        perihelion: "0.914 AU",
+        notes: "Great Comet of 1997. Visible to naked eye for 18 months. One of the brightest comets of 20th century."
+      },
+      hyakutake: {
+        name: "C/1996 B2 (Hyakutake)",
+        size: "~4.2 km",
+        composition: "Ice, Dust, organic compounds",
+        danger: "Low",
+        orbit: "~70,000 years",
+        distance: "0.230 - 1700 AU",
+        discovered: "January 31, 1996",
+        discoverer: "Yuji Hyakutake",
+        mass: "~3 × 10¹³ kg",
+        density: "~0.5 g/cm³",
+        rotation: "6.23 hours",
+        perihelion: "0.230 AU",
+        notes: "Great Comet of 1996. Passed very close to Earth (0.1 AU). Had one of the longest visible tails."
+      },
+      encke: {
+        name: "2P/Encke",
+        size: "~4.8 km",
+        composition: "Ice & Rock (depleted volatiles)",
+        danger: "Low",
+        orbit: "3.3 years",
+        distance: "0.330 - 4.109 AU",
+        discovered: "January 17, 1786",
+        discoverer: "Pierre Méchain",
+        mass: "~7 × 10¹³ kg",
+        density: "~0.6 g/cm³",
+        rotation: "15.08 hours",
+        perihelion: "0.330 AU",
+        notes: "Shortest orbital period of any known comet. Source of Taurid meteor showers. Orbit decaying slowly."
+      },
+      churyumov: {
+        name: "67P/Churyumov-Gerasimenko",
+        size: "4.1 × 4.3 km",
+        composition: "Ice, Dust, organic molecules",
+        danger: "Low",
+        orbit: "6.45 years",
+        distance: "1.243 - 5.683 AU",
+        discovered: "September 11, 1969",
+        discoverer: "Klim Churyumov and Svetlana Gerasimenko",
+        mass: "9.982 × 10¹² kg",
+        density: "0.533 g/cm³",
+        rotation: "12.4 hours",
+        perihelion: "1.243 AU",
+        notes: "Target of ESA Rosetta mission and Philae lander (2014). Duck-shaped nucleus. First comet landing."
+      },
+      neowise: {
+        name: "C/2020 F3 (NEOWISE)",
+        size: "~5 km",
+        composition: "Ice, Dust, Rock",
+        danger: "Low",
+        orbit: "~6766 years",
+        distance: "0.295 - 715 AU",
+        discovered: "March 27, 2020",
+        discoverer: "NEOWISE space telescope",
+        mass: "~1 × 10¹⁴ kg",
+        density: "~0.5 g/cm³",
+        rotation: "~7.6 hours",
+        perihelion: "0.295 AU",
+        notes: "Brightest comet visible from Northern Hemisphere since Hale-Bopp. Discovered during COVID-19 pandemic."
+      },
+      "swift-tuttle": {
+        name: "109P/Swift-Tuttle",
+        size: "~26 km",
+        composition: "Ice, Rock, Dust",
+        danger: "Medium",
+        orbit: "133 years",
+        distance: "0.960 - 51.225 AU",
+        discovered: "July 16, 1862",
+        discoverer: "Lewis Swift and Horace Parnell Tuttle",
+        mass: "~2.1 × 10¹⁵ kg",
+        density: "~0.6 g/cm³",
+        rotation: "~55 hours",
+        perihelion: "0.960 AU",
+        notes: "Parent of Perseid meteor shower. Largest object that repeatedly passes near Earth. Potential future impact risk (year 3044)."
+      },
+      tempel: {
+        name: "9P/Tempel",
+        size: "7.6 × 4.9 km",
+        composition: "Ice, Dust, silicates",
+        danger: "Low",
+        orbit: "5.5 years",
+        distance: "1.542 - 4.748 AU",
+        discovered: "April 3, 1867",
+        discoverer: "Ernst Wilhelm Leberecht Tempel",
+        mass: "~7.5 × 10¹³ kg",
+        density: "0.62 g/cm³",
+        rotation: "41.85 hours",
+        perihelion: "1.542 AU",
+        notes: "Target of Deep Impact mission (2005). Impactor revealed interior composition. Visited by Stardust spacecraft."
+      }
+    };
+
+    document.getElementById('comet-table').addEventListener('click', (e) => {
+      const row = e.target.closest('tr');
+      if (row && row.dataset.id) {
+        const cometId = row.dataset.id;
+        const data = cometData[cometId];
+        localStorage.setItem('selectedComet', JSON.stringify(data));
+        window.location.href = 'CometDetail.html';
+      }
+    });
+  </script>
+</body>
+</html>
