@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Outfit:wght@300;400;600;800&display=swap');
+
+:root {
+  --bg: #111316;
+  --card: #0e2130;
+  --accent: #b7a5ff;
+  --accent-2: #8b79d6;
+  --text: #eae7ff;
+  --muted: #c5bdea;
+  --ring: #bfb2e6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: "Outfit", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: radial-gradient(1200px 800px at 70% 20%, #0a2742, #0a1b2a 60%, #0a121c 100%) fixed, var(--bg);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.frame {
+  width: min(1400px, 96vw);
+  min-height: 80vh;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0)), var(--card);
+  border-radius: 28px;
+  position: relative;
+  overflow: hidden;
+  border: 10px solid var(--ring);
+  box-shadow: 0 20px 80px rgba(0,0,0,.45);
+  padding: clamp(20px, 4vw, 40px);
+  isolation: isolate;
+}
+
+.corner {
+  position: absolute;
+  inset: 16px;
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+.corner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  outline: 2px dashed rgba(255,255,255,.06);
+}
+
+.brand {
+  font-family: "Audiowide", system-ui;
+  line-height: 1;
+  letter-spacing: 1px;
+  color: var(--accent);
+}
+
+.brand .title {
+  margin: 0;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  background: transparent;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all .2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover {
+  color: #16161a;
+  background: var(--accent);
+  box-shadow: 0 6px 24px rgba(183,165,255,.35);
+  transform: translateY(-1px);
+}
+
+.btn.secondary {
+  border-color: var(--accent-2);
+  color: var(--accent-2);
+}
+
+.btn.secondary:hover {
+  background: var(--accent-2);
+  color: #0f1020;
+  box-shadow: 0 6px 24px rgba(139,121,214,.35);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}

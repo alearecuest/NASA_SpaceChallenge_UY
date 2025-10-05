@@ -1,0 +1,148 @@
+.frame {
+  width: min(1200px, 96vw);
+}
+
+.brand {
+  line-height: 1.2;
+}
+
+.brand .title {
+  font-size: clamp(28px, 5vw, 48px);
+}
+
+.detail-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 20px;
+  padding: 16px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(183,165,255,0.1);
+}
+
+.detail-label {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.detail-value {
+  color: var(--muted);
+}
+
+.notes {
+  margin-top: 24px;
+  padding: 20px;
+  background: rgba(183,165,255,0.05);
+  border-radius: 12px;
+  border-left: 4px solid var(--accent);
+}
+
+.notes h3 {
+  margin: 0 0 12px;
+  color: var(--accent);
+}
+
+.notes p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Contenedor del botón de simulación - MITAD DE TAMAÑO */
+.simulation-button-container {
+  width: 100%;
+  margin-top: 32px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 20px;
+}
+
+/* Botón de simulación - MITAD DE TAMAÑO */
+.btn-simulation {
+  width: 40%;
+  max-width: 300px;
+  min-height: 60px;
+  padding: 18px 40px;
+  border-radius: 16px;
+  border: 3px solid var(--accent);
+  background: linear-gradient(135deg, rgba(183,165,255,0.2), rgba(139,121,214,0.2));
+  color: var(--accent);
+  font-weight: 900;
+  font-size: 22px;
+  cursor: pointer;
+  transition: all .3s ease;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  box-shadow: 0 8px 32px rgba(183,165,255,0.4);
+  position: relative;
+  overflow: hidden;
+  font-family: "Audiowide", system-ui;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn-simulation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(183,165,255,0.5), transparent);
+  transition: left 0.6s;
+}
+
+.btn-simulation:hover::before {
+  left: 100%;
+}
+
+.btn-simulation:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 48px rgba(183,165,255,0.6);
+  background: linear-gradient(135deg, rgba(183,165,255,0.35), rgba(139,121,214,0.35));
+  border-color: #cfbfff;
+}
+
+.btn-simulation:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .detail-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .btn-simulation {
+    width: 70%;
+    padding: 16px 30px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    min-height: 50px;
+  }
+
+  .simulation-button-container {
+    padding: 20px 10px;
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-simulation {
+    width: 85%;
+    padding: 14px 24px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    min-height: 45px;
+  }
+}

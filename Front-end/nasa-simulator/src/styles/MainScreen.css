@@ -1,0 +1,96 @@
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 1.2fr;  /* Invertido: texto izquierda, planeta derecha */
+	align-items: center;
+	gap: clamp(20px, 5vw, 60px);
+	height: 100%;
+  }
+  
+  .brand .title {
+	font-size: clamp(48px, 9vw, 120px);
+	margin: 0 0 6px;
+  }
+  
+  .brand .subtitle {
+	font-size: clamp(38px, 7.5vw, 92px);
+	margin: 0 0 28px;
+	color: #cfbfff;
+  }
+  
+  .cta {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+  }
+  
+  .cta .btn {
+	padding: 14px 26px;
+	font-size: 18px;
+  }
+  
+  .planet-wrap {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 1/1;
+	display: grid;
+	place-items: center;
+	isolation: isolate;
+	overflow: visible;
+	order: 2;  /* Asegura que esté a la derecha */
+  }
+  
+  .earth {
+	width: 120%;
+	max-width: 600px;
+	display: block;
+	border-radius: 100%;
+	animation: spin 60s linear infinite;
+	filter: brightness(1) contrast(1) saturate(1);
+	mix-blend-mode: screen;
+	position: relative;
+	z-index: 1;
+	-webkit-mask-image: radial-gradient(circle at 50% 50%, #000 46%, transparent 50%);
+	mask-image: radial-gradient(circle at 50% 50%, #000 46%, transparent 50%);
+  }
+  
+  @keyframes spin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+  }
+  
+  .planet-wrap::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	border-radius: 100%;
+	z-index: 0;
+	background: radial-gradient(closest-side, rgba(183,165,255,.45), rgba(183,165,255,0) 70%);
+	filter: blur(14px);
+	transform: scale(1.8);
+	pointer-events: none;
+  }
+  
+  @media (max-width: 860px) {
+	.grid {
+	  grid-template-columns: 1fr;
+	  gap: 28px;
+	}
+  
+	.planet-wrap {
+	  order: -1;  /* En móvil, el planeta va arriba */
+	}
+  
+	.brand .title {
+	  font-size: clamp(42px, 13vw, 80px);
+	}
+  
+	.brand .subtitle {
+	  font-size: clamp(28px, 10vw, 64px);
+	}
+  
+	.cta .btn {
+	  font-size: 16px;
+	}
+  }
+  

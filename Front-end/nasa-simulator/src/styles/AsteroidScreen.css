@@ -1,0 +1,74 @@
+.brand .title {
+  font-size: clamp(36px, 6vw, 72px);
+}
+
+.table-container {
+  overflow-x: auto;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(183,165,255,0.2);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+thead {
+  background: rgba(183,165,255,0.1);
+}
+
+th {
+  padding: 18px 16px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--accent);
+  border-bottom: 2px solid rgba(183,165,255,0.3);
+}
+
+tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+tbody tr:hover {
+  background: rgba(183,165,255,0.08);
+  transform: scale(1.01);
+}
+
+td {
+  padding: 16px;
+  color: var(--muted);
+}
+
+td:first-child {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.danger-low {
+  color: #7cffb2;
+  font-weight: 600;
+}
+
+.danger-medium {
+  color: #ffd97d;
+  font-weight: 600;
+}
+
+.danger-high {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  table {
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 12px 8px;
+  }
+}
