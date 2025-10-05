@@ -3,6 +3,8 @@ from fastapi import FastAPI, Path, HTTPException
 # from services.physics import calculate_impact
 from models.schemas_neo import NeoData
 from services.neo_service import get_neo_data
+from models.schemas_simulator_impact_v2 import ImpactInputV2, SimulationResultV2
+from services.physicsv2 import calculate_impact_v2
 from api.routes import main_router
 
 app = FastAPI(
@@ -29,6 +31,24 @@ async def simulate_impact(input_data: ImpactInput):
     )
 
     return SimulationResult(**results)"""
+
+@app.post("/simulate/v2", response_model=SimulationResultV2, tags=["Simulation"])
+def run_simulation_v2(impact_params: ImpactInputV2):
+    """
+    Ejecuta una simulacion de impacto de asteroide con un motor de fisica mejorado
+    """
+
+    try:
+        params_dict = impact_params.dict()
+        simulation_data = calculate_impact_v2(params_dict)
+
+        return SimulationResultV2(**simulation_data)
+    except ValueError as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error en el motor de simulacion: {str(e)}")
+
+
 @app.get("/neo/{asteroid_id}", response_model=NeoData, tags=["Near Earth Object"])
 async def get_asteroid_data(asteroid_id: str = Path(..., min_length=3, description="Designacion del asteroide (ej. 99942)")):
     try:
