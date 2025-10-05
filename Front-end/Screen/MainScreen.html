@@ -222,7 +222,8 @@
     </section>
   </main>
 
-  <script>
+  <!--
+    <script>
     document.getElementById('btn-asteroid').addEventListener('click', () => {
       window.dispatchEvent(new CustomEvent('navigate', { detail: { to: 'asteroids' }}));
       alert('Nos vamos a Asteroids (todavia falta, ok)');
@@ -233,5 +234,16 @@
       alert('Nos vamos a Comets (todavia falta, ok x2)');
     });
   </script>
+-->
+
+<script>
+  document.getElementById('btn-asteroid').addEventListener('click', () => {
+    window.location.href = 'AsteroidScreen.html';
+  });
+
+  document.getElementById('btn-comet').addEventListener('click', () => {
+    window.location.href = 'CometScreen.html';
+  });
+</script>
 </body>
 </html>

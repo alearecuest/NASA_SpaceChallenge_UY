@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NASA Simulator - Asteroid Details</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../Style/AsteroidStyle.css">
+</head>
+<body>
+  <main class="frame" aria-label="Asteroid details">
+    <div class="corner" aria-hidden="true"></div>
+    
+    <div class="header">
+      <div class="brand">
+        <h1 class="title" id="asteroid-name">Loading...</h1>
+      </div>
+      <a href="AsteroidScreen.html" class="btn">← Back to List</a>
+    </div>
+
+    <div class="detail-grid" id="details-container"></div>
+
+    <div class="notes" id="notes-container" style="display: none;">
+      <h3>Additional Notes</h3>
+      <p id="notes-text"></p>
+    </div>
+  </main>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem('selectedAsteroid'));
+    
+    if (!data) {
+      window.location.href = 'AsteroidScreen.html';
+    } else {
+      document.getElementById('asteroid-name').textContent = data.name;
+      
+      const detailsContainer = document.getElementById('details-container');
+      const fields = [
+        { label: 'Size', value: data.size },
+        { label: 'Composition', value: data.composition },
+        { label: 'Danger Level', value: data.danger },
+        { label: 'Orbital Period', value: data.orbit },
+        { label: 'Distance from Sun', value: data.distance },
+        { label: 'Discovered', value: data.discovered },
+        { label: 'Discoverer', value: data.discoverer },
+        { label: 'Mass', value: data.mass },
+        { label: 'Density', value: data.density },
+        { label: 'Rotation Period', value: data.rotation },
+        { label: 'Surface Temperature', value: data.surface_temp }
+      ];
+
+      fields.forEach(field => {
+        const row = document.createElement('div');
+        row.className = 'detail-row';
+        row.innerHTML = `
+          <div class="detail-label">${field.label}</div>
+          <div class="detail-value">${field.value}</div>
+        `;
+        detailsContainer.appendChild(row);
+      });
+
+      if (data.notes) {
+        document.getElementById('notes-container').style.display = 'block';
+        document.getElementById('notes-text').textContent = data.notes;
+      }
+    }
+  </script>
+</body>
+</html>
