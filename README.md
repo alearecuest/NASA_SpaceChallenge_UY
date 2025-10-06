@@ -1,4 +1,4 @@
-# NEO Simulator App
+# NEO Simulator
 
 A modern web application for exploring and simulating asteroid and comet impacts on Earth. Built with React and featuring real astronomical data visualization.
 
@@ -174,3 +174,4 @@ Contributions are welcome! Please follow these steps:
 ## Authors
 
 **Aylin Pintos, Luna Leguizamo, Jorge Beritan, Alejandro Arévalo** 
+
