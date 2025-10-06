@@ -113,7 +113,7 @@ export const asteroidData = {
   },
   florence: {
     id: '2001862',
-    name: "Apllo",
+    name: "Apollo",
     size: "2.6 km",
     composition: "Stony (S-type)",
     danger: "Dangerous",

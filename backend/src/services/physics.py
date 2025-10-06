@@ -1,10 +1,10 @@
 import math
 
 # Constantes de calibración (se pueden modificar para testing)
-K_CRATER = 0.12
-K_FIREBALL = 0.015
-K_SHOCKWAVE = 0.0008
-K_WIND = 150
+K_CRATER = 0.02
+K_FIREBALL = 0.002
+K_SHOCKWAVE = 0.002
+K_WIND = 0.55
 K_TSUNAMI = 0.0005
 
 def calculate_impact(diameter: float, density: float, velocity: float, angle_degrees, is_water_impact: bool) -> dict:
