@@ -110,7 +110,7 @@ function Simulation() {
     return (
       <main className="frame">
         <div className="corner"></div>
-        <h2>Cargando datos del asteroide...</h2>
+        <h2>Loading asteroid data...</h2>
       </main>
     );
   }
@@ -122,7 +122,7 @@ function Simulation() {
         <h2>Error</h2>
         <p>{error}</p>
         <button className="btn" onClick={handleBackToList}>
-          ← Volver a la lista
+          ← Back to List
         </button>
       </main>
     );
@@ -134,7 +134,7 @@ function Simulation() {
         <div className="corner"></div>
         <h2>Objeto no encontrado</h2>
         <button className="btn" onClick={handleBackToList}>
-          Volver a la lista
+          Back to List
         </button>
       </main>
     );
@@ -151,7 +151,7 @@ function Simulation() {
           <p className="subtitle-small">{asteroidData.nombre}</p>
         </div>
         <button className="btn" onClick={handleBackToList}>
-          ← Volver a la lista
+          ← Back to List
         </button>
       </div>
 

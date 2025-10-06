@@ -40,7 +40,7 @@ function AsteroidDetail() {
     return (
       <main className="frame">
         <div className="corner" aria-hidden="true"></div>
-        <h2>Cargando datos del asteroide...</h2>
+        <h2>loading asteroid data...</h2>
       </main>
     );
   }
@@ -53,7 +53,7 @@ function AsteroidDetail() {
         <h2>Error</h2>
         <p>{error}</p>
         <button className="btn" onClick={() => navigate('/asteroids')}>
-          ← Volver a la lista
+          ← Back to List
         </button>
       </main>
     );
@@ -63,9 +63,9 @@ function AsteroidDetail() {
     return (
       <main className="frame">
         <div className="corner" aria-hidden="true"></div>
-        <h2>Asteroide no encontrado</h2>
+        <h2>Asteroid not found</h2>
         <button className="btn" onClick={() => navigate('/asteroids')}>
-          ← Volver a la lista
+          ← Back to List
         </button>
       </main>
     );
@@ -93,7 +93,7 @@ function AsteroidDetail() {
           <h1 className="title">{asteroid.nombre}</h1>
         </div>
         <button className="btn" onClick={() => navigate('/asteroids')}>
-          ← Volver a la lista
+          ← Back to List
         </button>
       </div>
 
@@ -111,7 +111,7 @@ function AsteroidDetail() {
           className="btn-simulation" 
           onClick={() => navigate(`/simulation/asteroid/${id}`)}
         >
-          🌍 Simulación
+          🌍 Simulation
         </button>
       </div>
     </main>

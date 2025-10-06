@@ -49,13 +49,13 @@ def calculate_impact(diameter: float, density: float, velocity: float, angle_deg
     zones = []
 
     vaporization_radius = (energy_joules ** 0.2) / 1000
-    zones.append({'radius_km': vaporization_radius, "description": "Vaporizacion Total"})
+    zones.append({'radius_km': vaporization_radius, "description": "Total evaporation"})
 
     destruction_radius = (energy_joules ** 0.21) / 1000
-    zones.append({"radius_km": destruction_radius, "description": "Destruccion total"})
+    zones.append({"radius_km": destruction_radius, "description": "Total Destruction"})
 
     severe_damage_radius = (energy_joules ** 0.23) / 1000
-    zones.append({"radius_km": severe_damage_radius, "description": "Daños graves, incendios generalizados"})
+    zones.append({"radius_km": severe_damage_radius, "description": "Severe damage, widespread fires"})
 
     results['damage_zones'] = zones
 

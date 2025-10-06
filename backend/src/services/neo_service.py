@@ -62,12 +62,12 @@ async def get_neo_data(asteroid_id: str) -> NeoData:
     mass_kg = volume_m3 * DEFAULT_DENSITY
     energia_joules = 0.5 * mass_kg * ((velocity_km_s * 1000) ** 2)
 
-    peligrosidad = "Asteroide potencialmente peligroso" if is_hazardous else "Riesgo bajo"
+    peligrosidad = "Potentially hazardous asteroid" if is_hazardous else "Low Risk"
     
     riesgo_torino = 1 if is_hazardous else 0
     riesgo_palermo = -1.0 if is_hazardous else -5.0
     
-    composicion = f"No disponible en esta API (densidad asumida: {DEFAULT_DENSITY} kg/m³)"
+    composicion = f"Not available in this API (assumed density: {DEFAULT_DENSITY} kg/m³)"
 
     return NeoData(
         nombre=name,
