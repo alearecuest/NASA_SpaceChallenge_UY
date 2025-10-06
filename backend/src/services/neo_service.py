@@ -24,6 +24,7 @@ async def get_neo_data(asteroid_id: str) -> NeoData:
         response = await client.get(NASA_NEOWS_URL.format(asteroid_id=asteroid_id))
         
         if response.status_code != 200:
+            print(f"Respuesta de la API de la NASA: STATUS {response.status_code}")
             raise ValueError(f"Error al obtener datos de la NASA para {asteroid_id}: {response.text}")
         
         try:
@@ -38,6 +39,7 @@ async def get_neo_data(asteroid_id: str) -> NeoData:
     ]
 
     if not earth_approaches:
+        print(f"El asteroide {asteroid_id} no tiene aproximaciones a la tierra")
         raise ValueError(f"El asteroide {asteroid_id} no tiene aproximaciones registradas a la Tierra.")
 
     closest_approach = min(

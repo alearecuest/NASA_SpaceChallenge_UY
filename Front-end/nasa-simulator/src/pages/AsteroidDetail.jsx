@@ -1,36 +1,87 @@
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { asteroidData } from '../data/asteroidData';
 import '../styles/DetailScreen.css';
+
 
 function AsteroidDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const asteroid = asteroidData[id];
+
+  const [asteroid, setAsteroid] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchAsteroidData = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const response = await fetch(`http://localhost:8000/neo/${id}`);
+        
+        if (!response.ok) {
+          throw new Error(`Error al obtener los datos: ${response.statusText} (Código: ${response.status})`);
+        }
+        
+        const data = await response.json();
+        setAsteroid(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchAsteroidData();
+    }
+  }, [id]); 
+
+  if (isLoading) {
+    return (
+      <main className="frame">
+        <div className="corner" aria-hidden="true"></div>
+        <h2>Cargando datos del asteroide...</h2>
+      </main>
+    );
+  }
+
+
+  if (error) {
+    return (
+      <main className="frame">
+        <div className="corner" aria-hidden="true"></div>
+        <h2>Error</h2>
+        <p>{error}</p>
+        <button className="btn" onClick={() => navigate('/asteroids')}>
+          ← Volver a la lista
+        </button>
+      </main>
+    );
+  }
 
   if (!asteroid) {
     return (
       <main className="frame">
         <div className="corner" aria-hidden="true"></div>
-        <h2>Asteroid not found</h2>
+        <h2>Asteroide no encontrado</h2>
         <button className="btn" onClick={() => navigate('/asteroids')}>
-          ← Back to List
+          ← Volver a la lista
         </button>
       </main>
     );
   }
 
   const fields = [
-    { label: 'Size', value: asteroid.size },
-    { label: 'Composition', value: asteroid.composition },
-    { label: 'Danger Level', value: asteroid.danger },
-    { label: 'Orbital Period', value: asteroid.orbit },
-    { label: 'Distance from Sun', value: asteroid.distance },
-    { label: 'Discovered', value: asteroid.discovered },
-    { label: 'Discoverer', value: asteroid.discoverer },
-    { label: 'Mass', value: asteroid.mass },
-    { label: 'Density', value: asteroid.density },
-    { label: 'Rotation Period', value: asteroid.rotation },
-    { label: 'Surface Temperature', value: asteroid.surface_temp }
+    { label: 'Nombre', value: asteroid.nombre },
+    { label: 'Designación NASA', value: asteroid.designacion },
+    { label: 'Diámetro Promedio (m)', value: asteroid.size ? `${asteroid.size.toFixed(2)} m` : 'No disponible' },
+    { label: 'Distancia Actual (km)', value: asteroid.distancia_actual_km ? `${asteroid.distancia_actual_km.toLocaleString()} km` : 'No disponible' },
+    { label: 'Velocidad Relativa (km/s)', value: asteroid.velocidad_relativa_km_s ? `${asteroid.velocidad_relativa_km_s.toFixed(2)} km/s` : 'No disponible' },
+    { label: 'Escala de Riesgo (Torino)', value: asteroid.riesgo_torino },
+    { label: 'Escala de Riesgo (Palermo)', value: asteroid.riesgo_palermo },
+    { label: 'Composición Estimada', value: asteroid.composicion_estimada },
+    { label: 'Energía de Impacto (Julios)', value: asteroid.energia_impacto_joules ? `${asteroid.energia_impacto_joules.toExponential(2)} J` : 'No disponible' },
+    { label: 'Nivel de Peligrosidad', value: asteroid.peligrosidad },
   ];
 
   return (
@@ -39,10 +90,10 @@ function AsteroidDetail() {
       
       <div className="header">
         <div className="brand">
-          <h1 className="title">{asteroid.name}</h1>
+          <h1 className="title">{asteroid.nombre}</h1>
         </div>
         <button className="btn" onClick={() => navigate('/asteroids')}>
-          ← Back to List
+          ← Volver a la lista
         </button>
       </div>
 
@@ -55,19 +106,12 @@ function AsteroidDetail() {
         ))}
       </div>
 
-      {asteroid.notes && (
-        <div className="notes">
-          <h3>Additional Notes</h3>
-          <p>{asteroid.notes}</p>
-        </div>
-      )}
-
       <div className="simulation-button-container">
         <button 
           className="btn-simulation" 
           onClick={() => navigate(`/simulation/asteroid/${id}`)}
         >
-          🌍 Simulation
+          🌍 Simulación
         </button>
       </div>
     </main>

@@ -1,10 +1,10 @@
 export const asteroidData = {
   bennu: {
-    id: 'bennu',
-    name: "101955 Bennu",
-    size: "0.49 km",
-    composition: "Carbonaceous (B-type)",
-    danger: "Medium",
+    id: '2001943',
+    name: "Anteros",
+    size: "0.31 km",
+    composition: "Stony (S-type)",
+    danger: "Low",
     orbit: "1.13 years",
     distance: "0.897 - 1.356 AU",
     discovered: "September 11, 1999",
@@ -16,11 +16,11 @@ export const asteroidData = {
     notes: "Target of OSIRIS-REx mission. Contains water-bearing minerals. Small chance of Earth impact in 2182."
   },
   apophis: {
-    id: 'apophis',
-    name: "99942 Apophis",
-    size: "0.37 km",
+    id: '54505728',
+    name: "XE11",
+    size: "0.075 km",
     composition: "Silicate (Sq-type)",
-    danger: "High",
+    danger: "Low",
     orbit: "0.89 years",
     distance: "0.746 - 1.099 AU",
     discovered: "June 19, 2004",
@@ -32,10 +32,10 @@ export const asteroidData = {
     notes: "Will pass extremely close to Earth on April 13, 2029 (within 31,000 km). No impact threat for at least 100 years."
   },
   ryugu: {
-    id: 'ryugu',
-    name: "162173 Ryugu",
-    size: "0.90 km",
-    composition: "Carbonaceous (Cg-type)",
+    id: '2001917',
+    name: "Cuyo",
+    size: "5.7 km",
+    composition: "Stony (S-type)",
     danger: "Low",
     orbit: "1.30 years",
     distance: "0.963 - 1.416 AU",
@@ -48,10 +48,10 @@ export const asteroidData = {
     notes: "Target of Hayabusa2 mission. Samples returned to Earth in December 2020. Diamond-shaped rubble pile."
   },
   ceres: {
-    id: 'ceres',
-    name: "1 Ceres",
-    size: "939.4 km",
-    composition: "Rocky core with ice mantle",
+    id: '2001866',
+    name: "Sisyphus",
+    size: "13.7 km",
+    composition: "Stony (S-type)",
     danger: "Low",
     orbit: "4.60 years",
     distance: "2.558 - 2.976 AU",
@@ -64,10 +64,10 @@ export const asteroidData = {
     notes: "Largest object in asteroid belt. Only dwarf planet in inner solar system. Studied by Dawn spacecraft."
   },
   vesta: {
-    id: 'vesta',
-    name: "4 Vesta",
-    size: "525.4 km",
-    composition: "Rocky (Basaltic crust)",
+    id: '2000433',
+    name: "Eros",
+    size: "35.9 km",
+    composition: "Stony (S-type)",
     danger: "Low",
     orbit: "3.63 years",
     distance: "2.152 - 2.572 AU",
@@ -80,10 +80,10 @@ export const asteroidData = {
     notes: "Second-largest asteroid. Has differentiated interior. Visible to naked eye. Visited by Dawn spacecraft."
   },
   eros: {
-    id: 'eros',
-    name: "433 Eros",
-    size: "16.8 km",
-    composition: "Silicate (S-type)",
+    id: '2001865',
+    name: "Cerberus",
+    size: "0.1 km",
+    composition: "Stony (S-type)",
     danger: "Low",
     orbit: "1.76 years",
     distance: "1.133 - 1.783 AU",
@@ -96,10 +96,10 @@ export const asteroidData = {
     notes: "First near-Earth asteroid discovered. NEAR Shoemaker spacecraft landed on it in 2001."
   },
   psyche: {
-    id: 'psyche',
-    name: "16 Psyche",
-    size: "226 km",
-    composition: "Metallic (Iron-Nickel)",
+    id: '2001863',
+    name: "Antinous",
+    size: "3.4 km",
+    composition: "Stony (S-type)",
     danger: "Low",
     orbit: "5.00 years",
     distance: "2.513 - 3.329 AU",
@@ -112,11 +112,11 @@ export const asteroidData = {
     notes: "May be exposed core of protoplanet. Target of NASA Psyche mission (launch 2023). Potentially valuable resources."
   },
   florence: {
-    id: 'florence',
-    name: "3122 Florence",
-    size: "4.5 km",
+    id: '2001862',
+    name: "Apllo",
+    size: "2.6 km",
     composition: "Stony (S-type)",
-    danger: "Medium",
+    danger: "Dangerous",
     orbit: "2.35 years",
     distance: "1.017 - 2.524 AU",
     discovered: "March 2, 1981",
