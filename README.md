@@ -37,14 +37,9 @@ Before you begin, ensure you have the following installed:
 ### Installing Node.js and npm on Ubuntu/Debian:
 
 ```bash
-# Option 1: Quick install
+# Quick install
 sudo apt update
 sudo apt install nodejs npm
-
-# Option 2: Using NVM (Recommended)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-source ~/.bashrc
-nvm install --lts
 
 # Verify installation
 node --version
@@ -57,7 +52,6 @@ npm --version
 
 ```bash
 git clone https://github.com/alearecuest/NASA_SpaceChallenge_UY.git
-cd NASA_SpaceChallenge_UY/Front-end/nasa-simulator
 ```
 
 2. **Install dependencies**
@@ -190,3 +184,4 @@ Contributions are welcome! Please follow these steps:
 ## Authors
 
 **Aylin Pintos, Luna Leguizamo, Jorge Beritan, Alejandro Arévalo** 
+
