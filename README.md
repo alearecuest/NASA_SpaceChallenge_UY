@@ -127,20 +127,10 @@ nasa-simulator/
 Runs the app in development mode.  
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.
-
-### `npm test`
-
-Launches the test runner in interactive watch mode.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.  
 The build is minified and optimized for best performance.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
 ## Backend Integration
 
@@ -184,4 +174,3 @@ Contributions are welcome! Please follow these steps:
 ## Authors
 
 **Aylin Pintos, Luna Leguizamo, Jorge Beritan, Alejandro Arévalo** 
-
