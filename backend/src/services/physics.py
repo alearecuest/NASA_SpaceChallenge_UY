@@ -2,7 +2,7 @@ import math
 
 # Constantes de calibración (se pueden modificar para testing)
 K_CRATER = 0.02
-K_FIREBALL = 0.002
+K_FIREBALL = 0.004
 K_SHOCKWAVE = 0.002
 K_WIND = 0.55
 K_TSUNAMI = 0.0005
@@ -48,13 +48,13 @@ def calculate_impact(diameter: float, density: float, velocity: float, angle_deg
 
     zones = []
 
-    vaporization_radius = (energy_joules ** 0.33) / 1000
+    vaporization_radius = (energy_joules ** 0.2) / 1000
     zones.append({'radius_km': vaporization_radius, "description": "Vaporizacion Total"})
 
-    destruction_radius = (energy_joules ** 0.40) / 1000
+    destruction_radius = (energy_joules ** 0.21) / 1000
     zones.append({"radius_km": destruction_radius, "description": "Destruccion total"})
 
-    severe_damage_radius = (energy_joules ** 0.45) / 1000
+    severe_damage_radius = (energy_joules ** 0.23) / 1000
     zones.append({"radius_km": severe_damage_radius, "description": "Daños graves, incendios generalizados"})
 
     results['damage_zones'] = zones

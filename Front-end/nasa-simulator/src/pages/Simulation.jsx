@@ -147,7 +147,7 @@ function Simulation() {
       
       <div className="header">
         <div className="brand">
-          <h1 className="title">Simulación de Impacto</h1>
+          <h1 className="title">Impact Simulation</h1>
           <p className="subtitle-small">{asteroidData.nombre}</p>
         </div>
         <button className="btn" onClick={handleBackToList}>
@@ -158,7 +158,7 @@ function Simulation() {
       {/* --- Controles de Simulación --- */}
       <div className="simulation-controls">
         <div className="control-group">
-          <label htmlFor="angle-slider">Ángulo de Impacto: {impactAngle}°</label>
+          <label htmlFor="angle-slider">Angle Impact: {impactAngle}°</label>
           <input
             id="angle-slider"
             type="range"
@@ -175,7 +175,7 @@ function Simulation() {
               checked={isWaterImpact}
               onChange={(e) => setIsWaterImpact(e.target.checked)}
             />
-            Impacto en Océano
+            Ocean Impact
           </label>
         </div>
       </div>
@@ -194,7 +194,7 @@ function Simulation() {
         </div>
 
         <div className="simulation-info">
-          <h2>Datos del Impacto</h2>
+          <h2>Impact Data</h2>
           
           {isSimulating && <p>Ejecutando simulación...</p>}
           {simulationError && <p className="error-message">Error en la simulación: {simulationError}</p>}
@@ -202,18 +202,18 @@ function Simulation() {
           {simulationData && (
             <div className="info-grid">
               <div className="info-card">
-                <div className="info-label">Diámetro del Cráter</div>
+                <div className="info-label">Crater Diameter</div>
                 <div className="info-value">{(simulationData.crater_diameter_m / 1000).toFixed(2)} km</div>
               </div>
 
               {!isWaterImpact && (
                 <>
                   <div className="info-card">
-                    <div className="info-label">Diámetro de Bola de Fuego</div>
+                    <div className="info-label">Fireball Diameter</div>
                     <div className="info-value">{(simulationData.fireball_diameter_m / 1000).toFixed(2)} km</div>
                   </div>
                   <div className="info-card">
-                    <div className="info-label">Radio de Onda de Choque</div>
+                    <div className="info-label">Shockwave Radius</div>
                     <div className="info-value">{simulationData.shockwave_radius_km.toFixed(2)} km</div>
                   </div>
                 </>
@@ -233,12 +233,12 @@ function Simulation() {
               )}
 
               <div className="info-card">
-                <div className="info-label">Magnitud de Terremoto</div>
+                <div className="info-label">Earthquake Magnitude</div>
                 <div className="info-value">{simulationData.earthquake_magnitude.toFixed(1)}</div>
               </div>
               
               <div className="info-card">
-                <div className="info-label">Velocidad Máxima del Viento</div>
+                <div className="info-label">Maximum Wind Speed</div>
                 <div className="info-value">{simulationData.max_wind_speed_km_h.toFixed(0)} km/h</div>
               </div>
             </div>
@@ -246,11 +246,11 @@ function Simulation() {
 
           {simulationData && simulationData.damage_zones && (
             <div className="warning-box">
-              <h3>⚠️ Zonas de Afectación</h3>
+              <h3>⚠️ Damage Zones</h3>
               <ul>
                 {simulationData.damage_zones.map((zone, index) => (
                   <li key={index}>
-                    <strong>{zone.description}:</strong> Radio de {zone.radius_km.toFixed(2)} km
+                    <strong>{zone.description}:</strong> Radius {zone.radius_km.toFixed(2)} km
                   </li>
                 ))}
               </ul>

@@ -72,16 +72,16 @@ function AsteroidDetail() {
   }
 
   const fields = [
-    { label: 'Nombre', value: asteroid.nombre },
-    { label: 'Designación NASA', value: asteroid.designacion },
-    { label: 'Diámetro Promedio (m)', value: asteroid.size ? `${asteroid.size.toFixed(2)} m` : 'No disponible' },
-    { label: 'Distancia Actual (km)', value: asteroid.distancia_actual_km ? `${asteroid.distancia_actual_km.toLocaleString()} km` : 'No disponible' },
-    { label: 'Velocidad Relativa (km/s)', value: asteroid.velocidad_relativa_km_s ? `${asteroid.velocidad_relativa_km_s.toFixed(2)} km/s` : 'No disponible' },
-    { label: 'Escala de Riesgo (Torino)', value: asteroid.riesgo_torino },
-    { label: 'Escala de Riesgo (Palermo)', value: asteroid.riesgo_palermo },
-    { label: 'Composición Estimada', value: asteroid.composicion_estimada },
-    { label: 'Energía de Impacto (Julios)', value: asteroid.energia_impacto_joules ? `${asteroid.energia_impacto_joules.toExponential(2)} J` : 'No disponible' },
-    { label: 'Nivel de Peligrosidad', value: asteroid.peligrosidad },
+    { label: 'Name', value: asteroid.nombre },
+    { label: 'NASA Designation', value: asteroid.designacion },
+    { label: 'Average Diameter (m)', value: asteroid.size ? `${asteroid.size.toFixed(2)} m` : 'No disponible' },
+    { label: 'Current Distance (km)', value: asteroid.distancia_actual_km ? `${asteroid.distancia_actual_km.toLocaleString()} km` : 'No disponible' },
+    { label: 'Relative Speed (km/s)', value: asteroid.velocidad_relativa_km_s ? `${asteroid.velocidad_relativa_km_s.toFixed(2)} km/s` : 'No disponible' },
+    { label: 'Risk Scale (Torine)', value: asteroid.riesgo_torino },
+    { label: 'Risk Scale (Palermo)', value: asteroid.riesgo_palermo },
+    { label: 'Estimated Composition', value: asteroid.composicion_estimada },
+    { label: 'Impact Energy (Jules)', value: asteroid.energia_impacto_joules ? `${asteroid.energia_impacto_joules.toExponential(2)} J` : 'No disponible' },
+    { label: 'Level of Danger', value: asteroid.peligrosidad },
   ];
 
   return (
