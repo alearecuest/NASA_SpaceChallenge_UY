@@ -27,12 +27,18 @@ A modern web application for exploring and simulating asteroid and comet impacts
 - **Build Tool**: Create React App
 - **Package Manager**: npm
 
-## Prerequisites
+## Pre requisites
 
 Before you begin, ensure you have the following installed:
 
 - **Node.js** 
 - **npm**
+- **fastapi**
+- **uvicorn**
+- **httpx**
+- **pydantic**
+- **pydantic-settings**
+- **python-dotenv**
 
 ### Installing Node.js and npm on Ubuntu/Debian:
 
@@ -174,4 +180,5 @@ Contributions are welcome! Please follow these steps:
 ## Authors
 
 **Aylin Pintos, Luna Leguizamo, Jorge Beritan, Alejandro Arévalo** 
+
 
